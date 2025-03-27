@@ -86,7 +86,7 @@ const Home = () => {
           bekerja, simak video penjelasan berikut ini:
         </p>
         <iframe
-          width='800'
+          className='w-full md:max-w-[800px]'
           height='450'
           src='https://www.youtube.com/embed/EoSUwyAvxnw?si=L2AxyECBzfvCs5BV'
           title='YouTube video player'
