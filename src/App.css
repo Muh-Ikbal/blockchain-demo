@@ -1,0 +1,150 @@
+@import 'tailwindcss';
+#container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+/* 
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(0, 97, 224, 0.8), 0 0 20px rgba(0, 97, 224, 0.8);
+  }
+
+  .text-outline {
+    -webkit-text-stroke: 1px rgba(0, 97, 224, 0.8);
+  }
+
+  .text-neon {
+    text-shadow: 0 0 5px rgba(0, 97, 224, 0.8), 0 0 10px rgba(0, 97, 224, 0.8),
+      0 0 15px rgba(0, 97, 224, 0.8);
+  }
+
+  .peer-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #ffff;
+    text-shadow: 0 0 15px #2981ff;
+
+  }
+
+  .peer-box {
+    border: 2px solid #2981ff;
+    background: rgba(10, 20, 40, 0.9);
+    color: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #2981ff;
+  }
+
+  .button-neon {
+    border: 2px solid #2981ff;
+    background: rgba(10, 20, 40, 0.9);
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #2981ff;
+  }
+  .button-neon:hover {
+    transition: all 0.2s ease-in-out;
+    background: #2981ff;
+    box-shadow: 0 0 20px #2981ff;
+  }
+
+  .glass-bg {
+    background: rgba(10, 20, 40, 0.5); /* Warna gelap transparan */
+    backdrop-filter: blur(10px); /* Efek blur */
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Garis transparan */
+  }
+
+  .input-neon {
+    background: rgba(10, 20, 40, 0.6);
+    border: 1px solid #2981ff;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+    box-shadow: 0 0 10px #165bbb;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .input-neon:focus {
+    border-color: #2981ff;
+    box-shadow: 0 0 20px #2981ff;
+  }
+
+  .bg-neon-blue {
+    background: #3d8eff;
+    box-shadow: 0 0 10px #1677ff;
+  }
+
+  .bg-neon-blue:hover {
+    background: #207dff;
+    box-shadow: 0 0 15px #2f84fb;
+  }
+
+  .bg-neon-red {
+    background: #ff3b3b;
+    box-shadow: 0 0 10px #ff3b3b;
+  }
+
+  .bg-neon-red:hover {
+    background: #c62828;
+    box-shadow: 0 0 15px #ff3b3b;
+  }
+
+  .bg-neon-purple {
+    background: #7d00ff;
+    box-shadow: 0 0 10px #7d00ff;
+  }
+
+  .bg-neon-purple:hover {
+    background: #5a00cc;
+    box-shadow: 0 0 15px #7d00ff;
+  }
+
+  .border-neon-blue {
+    border-color: #2981ff;
+    box-shadow: 0 0 5px #2981ff;
+  }
+
+  .border-neon-red {
+    border-color: #ff3b3b;
+    box-shadow: 0 0 8px #ff3b3b;
+  }
+}
