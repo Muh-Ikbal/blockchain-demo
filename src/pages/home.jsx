@@ -17,7 +17,7 @@ import { easeInOut, motion } from 'framer-motion';
 import { useState } from 'react';
 
 const Home = () => {
-  const [displayName, setDisplayName] = useState(false);
+  // const [displayName, setDisplayName] = useState(false);
   return (
     <div className='text-white px-3 pt-25'>
       {/* hero section */}
