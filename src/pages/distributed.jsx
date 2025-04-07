@@ -11,11 +11,12 @@ export default function DemoDistributed() {
   const [isConnected, setIsConnected] = useState(false);
   const [balance, setBalance] = useState(100);
   const socketRef = useRef(null);
-
+  const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  const port = 8081;
   useEffect(() => {
     // Inisialisasi koneksi WebSocket ketika komponen dimuat
-    // socketRef.current = new WebSocket('ws://156.67.221.206:8081');
-    socketRef.current = new WebSocket('wss://156.67.221.206:8081');
+    // socketRef.current = new WebSocket('ws://:8081');
+    socketRef.current = new WebSocket(`${protocol}://kitakerjait.site:${port}`);
 
 
     // Menghasilkan ID pengguna unik
