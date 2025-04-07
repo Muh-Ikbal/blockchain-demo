@@ -8,6 +8,7 @@ import Blockchain from './pages/block';
 import Distributed from './pages/transaction';
 import Tokens from './pages/blockchain';
 import Test from './pages/test';
+import DemoDistributed from './pages/distributed'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/block' element={<Blockchain />} />
         <Route path='/transaction' element={<Distributed />} />
         <Route path='/blockchain' element={<Tokens />} />
+        <Route path='/distributed' element={<DemoDistributed />} />
         <Route path='/test' element={<Test />} />
       </Routes>
     </>

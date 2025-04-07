@@ -22,6 +22,9 @@ const Navbar = () => {
           <NavLink to='/transaction' end>
             Transaction
           </NavLink>
+          <NavLink to='/distributed' end>
+            Distributed
+          </NavLink>
         </div>
       </div>
     </>
