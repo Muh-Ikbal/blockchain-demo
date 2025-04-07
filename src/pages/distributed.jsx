@@ -15,7 +15,7 @@ export default function DemoDistributed() {
   useEffect(() => {
     // Inisialisasi koneksi WebSocket ketika komponen dimuat
     // socketRef.current = new WebSocket('ws://156.67.221.206:8081');
-    socketRef.current = new WebSocket('ws://156.67.221.206:8081');
+    socketRef.current = new WebSocket('wss://156.67.221.206:8081');
 
 
     // Menghasilkan ID pengguna unik
