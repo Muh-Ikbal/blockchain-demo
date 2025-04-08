@@ -126,6 +126,8 @@ export default function DemoDistributed() {
         transaction,
       }),
     );
+    // setBalance((prevBalance) => prevBalance - parseFloat(amount));
+    
   };
 
   // Fungsi untuk meminta penambangan blok
