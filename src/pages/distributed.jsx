@@ -19,7 +19,8 @@ export default function DemoDistributed() {
 
 
     // Menghasilkan ID pengguna unik
-    const generatedUserId = 'user_' + Math.random().toString(36).substr(2, 9);
+    const generatedUserId = prompt('masukkan nama anda:');
+    // const generatedUserId = 'user_' + Math.random().toString(36).substr(2, 9);
     setUserId(generatedUserId);
 
     // Event handler untuk koneksi terbuka
