@@ -23,7 +23,12 @@ export default function DemoDistributed() {
 
     console.log(balance);
     // Menghasilkan ID pengguna unik
-    const generatedUserId = prompt('masukkan nama anda:');
+    let generatedUserId = prompt('masukkan nama anda:');
+    
+    while(generatedUserId === null || generatedUserId === '') {
+      alert('masukkan nama anda!');
+      generatedUserId = prompt('masukkan nama anda:');
+    }
     // const generatedUserId = 'user_' + Math.random().toString(36).substr(2, 9);
     setUserId(generatedUserId);
 
