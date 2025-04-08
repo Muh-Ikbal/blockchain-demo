@@ -12,12 +12,16 @@ export default function DemoDistributed() {
   const [balance, setBalance] = useState(100);
   const socketRef = useRef(null);
   const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+  const domain =
+    window.location.protocol === 'https:'
+      ? 'kitakerjait.site/ws/'
+      : 'localhost:8081';
   useEffect(() => {
     // Inisialisasi koneksi WebSocket ketika komponen dimuat
     // socketRef.current = new WebSocket('ws://:8081');
-    socketRef.current = new WebSocket(`${protocol}://kitakerjait.site/ws/`);
+    socketRef.current = new WebSocket(`${protocol}://${domain}`);
 
-
+    console.log(balance);
     // Menghasilkan ID pengguna unik
     const generatedUserId = prompt('masukkan nama anda:');
     // const generatedUserId = 'user_' + Math.random().toString(36).substr(2, 9);
@@ -41,10 +45,11 @@ export default function DemoDistributed() {
     // Event handler untuk menerima pesan
     socketRef.current.onmessage = (event) => {
       const message = JSON.parse(event.data);
-
+      console.log('Received message:', message.balance);
       switch (message.type) {
         case 'BLOCKCHAIN_UPDATE':
           setBlockchain(message.data);
+          console.log(balance)
           break;
         case 'PENDING_TRANSACTIONS':
           setPendingTransactions(message.data);
@@ -54,15 +59,18 @@ export default function DemoDistributed() {
           break;
         case 'NEW_TRANSACTION':
           // Update saldo jika transaksi melibatkan pengguna ini
-          if (message.transaction.sender === generatedUserId) {
-            setBalance(
-              (prevBalance) => prevBalance - message.transaction.amount,
-            );
-          } else if (message.transaction.recipient === generatedUserId) {
-            setBalance(
-              (prevBalance) => prevBalance + message.transaction.amount,
-            );
-          }
+          // if (message.transaction.sender === generatedUserId) {
+          //   setBalance(
+          //     (prevBalance) => prevBalance - message.transaction.amount,
+          //   );
+          // } else if (message.transaction.recipient === generatedUserId) {
+          //   setBalance(
+          //     (prevBalance) => prevBalance + message.transaction.amount,
+          //   );
+          // }
+          break;
+        case 'BALANCE_UPDATE':
+          setBalance(message.balance);
           break;
         default:
           console.log('Unknown message type:', message.type);
