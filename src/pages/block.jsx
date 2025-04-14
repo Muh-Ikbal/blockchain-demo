@@ -93,7 +93,7 @@ function Blockchain() {
   };
 
   return (
-    <div className='px-6 pt-25 max-w-3xl mx-auto'>
+    <div className='px-6 pt-25 mx-auto'>
       <h1 className='text-xl font-bold mb-4'>Blockchain Transaction History</h1>
       <input
         type='text'
@@ -130,71 +130,82 @@ function Blockchain() {
           Fix Blockchain
         </button>
       )}
-      <div className='space-y-4'>
+      <div className='space-y-4 flex overflow-x-auto gap-3 peer-box p-3'>
         {blockchain.map((block, index) => (
           <div
             key={index}
-            className={`text-black p-4 peer-box border rounded ${
-              invalidIndex === index ? 'border-neon-red' : 'border-neon-blue'
+            className={` w-[200px] text-white border rounded ${
+              invalidIndex !== null && index >= invalidIndex
+                ? 'border-neon-red'
+                : 'border-neon-blue'
             }`}
           >
-            <p>
-              <strong>Index:</strong> {block.index}
-            </p>
-            <p>
-              <strong>Previous Hash:</strong> {block.previousHash}
-            </p>
-            <p>
-              <strong>Hash:</strong> {block.hash}
-            </p>
-            {editingIndex === index ? (
-              <>
-                <input
-                  type='text'
-                  value={editedSender}
-                  onChange={(e) => setEditedSender(e.target.value)}
-                  className='p-2 border rounded mb-2 w-full'
-                />
-                <input
-                  type='text'
-                  value={editedReceiver}
-                  onChange={(e) => setEditedReceiver(e.target.value)}
-                  className='p-2 border rounded mb-2 w-full'
-                />
-                <input
-                  type='number'
-                  value={editedAmount}
-                  onChange={(e) => setEditedAmount(e.target.value)}
-                  className='p-2 border rounded mb-2 w-full'
-                />
-                <button
-                  onClick={() => saveBlock(index)}
-                  className='mt-2 px-3 py-1 bg-green-500 text-white rounded'
-                >
-                  Save
-                </button>
-              </>
-            ) : (
-              <>
-                <p>
-                  <strong>Sender:</strong> {block.sender}
-                </p>
-                <p>
-                  <strong>Receiver:</strong> {block.receiver}
-                </p>
-                <p>
-                  <strong>Amount:</strong> {block.amount}
-                </p>
-                {index !== 0 && (
+            <div className='bg-gradient-to-r px-2 rounded py-4 from-blue/20 to-white/10 backdrop-blur-lg border border-white/20 w-full'>
+              <p>
+                <strong className='text-sm'>Index:</strong> {block.index}
+              </p>
+            </div>
+            <div className='px-2 py-2'>
+              <p>
+                <strong className='text-sm '>Previous Hash:</strong>{' '}
+                <span className='text-xs break-all'> {block.previousHash}</span>
+              </p>
+              <p>
+                <strong className='text-sm'>Hash:</strong>{' '}
+                <span className='text-xs break-all'>{block.hash}</span>
+              </p>
+              {editingIndex === index ? (
+                <>
+                  <input
+                    type='text'
+                    value={editedSender}
+                    onChange={(e) => setEditedSender(e.target.value)}
+                    className='p-2 border rounded mb-2 w-full'
+                  />
+                  <input
+                    type='text'
+                    value={editedReceiver}
+                    onChange={(e) => setEditedReceiver(e.target.value)}
+                    className='p-2 border rounded mb-2 w-full'
+                  />
+                  <input
+                    type='number'
+                    value={editedAmount}
+                    onChange={(e) => setEditedAmount(e.target.value)}
+                    className='p-2 border rounded mb-2 w-full'
+                  />
                   <button
-                    onClick={() => editBlock(index)}
-                    className='mt-2 px-3 py-1 bg-yellow-500 text-white rounded'
+                    onClick={() => saveBlock(index)}
+                    className='mt-2 px-3 py-1 bg-green-500 text-white rounded'
                   >
-                    Edit
+                    Save
                   </button>
-                )}
-              </>
-            )}
+                </>
+              ) : (
+                <>
+                  <p>
+                    <strong className='text-sm'>Sender:</strong>{' '}
+                    <span className='text-xs'>{block.sender}</span>
+                  </p>
+                  <p>
+                    <strong className='text-sm'>Receiver:</strong>{' '}
+                    <span className='text-xs'>{block.receiver}</span>
+                  </p>
+                  <p>
+                    <strong className='text-sm'>Amount:</strong>{' '}
+                    <span className='text-xs'>{block.amount}</span>
+                  </p>
+                  {index !== 0 && (
+                    <button
+                      onClick={() => editBlock(index)}
+                      className='mt-2 px-3 py-1 bg-yellow-500 text-white rounded'
+                    >
+                      Edit
+                    </button>
+                  )}
+                </>
+              )}
+            </div>
           </div>
         ))}
       </div>

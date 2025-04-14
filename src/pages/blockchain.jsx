@@ -50,9 +50,9 @@ function Tokens() {
   const [isOpen, setIsOpen] = useState(false);
 
   const addBlock = (sender, receiver, amount) => {
-    if(sender === '' || receiver === '' || amount === null){
-      setIsOpen(false)
-      alert('data tidak lengkap')
+    if (sender === '' || receiver === '' || amount === null) {
+      setIsOpen(false);
+      alert('data tidak lengkap');
       return;
     }
     const timestamp = new Date().toISOString();
@@ -115,7 +115,7 @@ function Tokens() {
   };
 
   return (
-    <div className='p-6 max-w-3xl mx-auto pt-25'>
+    <div className='p-6 mx-auto pt-25'>
       <h1 className='text-xl font-bold mb-4'>Peer-to-Peer Blockchain</h1>
       <button
         onClick={() => setIsOpen(true)}
@@ -129,59 +129,80 @@ function Tokens() {
       >
         Validate Blockchain
       </button>
-      {isOpen && <Modal setIsOpen={setIsOpen} addBlock={addBlock} />}
+      {isOpen && (
+        <Modal className='z-50' setIsOpen={setIsOpen} addBlock={addBlock} />
+      )}
       <div className='space-y-4'>
         {peers.map((peer) => (
           <div key={peer.id} className=' text-white peer-box '>
             <h2 className='peer-title'>Peer {peer.id}</h2>
-            {peer.blockchain.map((block, index) => {
-              const isValid = peers.every(
-                (p) =>
-                  JSON.stringify(p.blockchain[index]) === JSON.stringify(block),
-              );
-              return (
-                <div
-                  key={index}
-                  className={`p-2 mt-2 peer-box ${
-                    isValid ? 'border-neon-blue' : 'border-neon-red'
-                  }`}
-                >
-                  <p>
-                    <strong>Index:</strong> {block.index}
-                  </p>
-                  <p>
-                    <strong>Previous Hash:</strong> {block.previousHash}
-                  </p>
-                  <p>
-                    <strong>Hash:</strong> {block.hash}
-                  </p>
-                  <p>
-                    <strong>Sender:</strong> {block.sender}
-                  </p>
-                  <p>
-                    <strong>Receiver:</strong> {block.receiver}
-                  </p>
-                  <p>
-                    <strong>Amount:</strong> {block.amount}
-                  </p>
-                  {index !== 0 && (
-                    <button
-                      onClick={() => {
-                        const sender = prompt('New Sender:');
-                        const receiver = prompt('New Receiver:');
-                        const amount = parseFloat(prompt('New Amount:'));
-                        if (sender && receiver && !isNaN(amount)) {
-                          editBlock(peer.id, index, sender, receiver, amount);
-                        }
-                      }}
-                      className='mt-2 px-3 py-1 bg-yellow-500 text-white rounded'
-                    >
-                      Edit Block
-                    </button>
-                  )}
-                </div>
-              );
-            })}
+            <div className='flex gap-3 overflow-x-auto'>
+              {peer.blockchain.map((block, index) => {
+                const isValid = peers.every(
+                  (p) =>
+                    JSON.stringify(p.blockchain[index]) ===
+                    JSON.stringify(block),
+                );
+                return (
+                  <div
+                    key={index}
+                    className={` w-[200px] text-white border rounded ${
+                      isValid ? 'border-neon-blue' : 'border-neon-red'
+                    }`}
+                  >
+                    <div className='bg-gradient-to-r px-2 rounded py-4 from-blue/20 to-white/10 backdrop-blur-lg border border-white/20 w-full z-20'>
+                      <p>
+                        <strong className='text-sm'>Index:</strong>{' '}
+                        {block.index}
+                      </p>
+                    </div>
+                    <div className='p-2 text-sm'>
+                      <p>
+                        <strong>Previous Hash:</strong>{' '}
+                        <span className='text-xs break-all'>
+                          {' '}
+                          {block.previousHash}
+                        </span>
+                      </p>
+                      <p>
+                        <strong>Hash:</strong>
+                        <span className='text-xs break-all'>{block.hash}</span>
+                      </p>
+                      <p>
+                        <strong>Sender:</strong> {block.sender}
+                      </p>
+                      <p>
+                        <strong>Receiver:</strong> {block.receiver}
+                      </p>
+                      <p>
+                        <strong>Amount:</strong> {block.amount}
+                      </p>
+                      {index !== 0 && (
+                        <button
+                          onClick={() => {
+                            const sender = prompt('New Sender:');
+                            const receiver = prompt('New Receiver:');
+                            const amount = parseFloat(prompt('New Amount:'));
+                            if (sender && receiver && !isNaN(amount)) {
+                              editBlock(
+                                peer.id,
+                                index,
+                                sender,
+                                receiver,
+                                amount,
+                              );
+                            }
+                          }}
+                          className='mt-2 px-3 py-1 bg-yellow-500 text-white rounded'
+                        >
+                          Edit Block
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ))}
       </div>

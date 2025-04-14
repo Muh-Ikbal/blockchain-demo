@@ -5,7 +5,7 @@ const Modal = ({setIsOpen,addBlock}) => {
   const [receiver,setReceiver] = useState('')
   const [amount,setAmount] = useState('')
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-transparent bg-opacity-60'>
+    <div className='fixed inset-0 flex items-center justify-center z-50 bg-transparent bg-opacity-60'>
       <div className='peer-box bg-black p-6 max-w-md'>
         <p className='peer-title text-center'>Add Transaction</p>
         <div className='flex flex-col items-start  p-2'>

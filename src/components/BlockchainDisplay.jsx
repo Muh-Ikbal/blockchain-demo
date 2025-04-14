@@ -4,9 +4,9 @@ function BlockchainDisplay({ blockchain }) {
   return (
     <div className='blockchain-display'>
       <h2>Blockchain ({blockchain.length} blocks)</h2>
-      <div className='blocks-container'>
+      <div className='flex gap-3 overflow-x-auto p-3'>
         {blockchain.map((block, index) => (
-          <div key={index} className='block peer-box'>
+          <div key={index} className='block min-w-[300px] peer-box'>
             <div className='block-header'>
               <strong>Block #{block.index}</strong>
               <span className='timestamp'>
@@ -16,11 +16,11 @@ function BlockchainDisplay({ blockchain }) {
             <div className='block-info'>
               <p>
                 <strong>Hash:</strong>{' '}
-                <span className='hash'>{block.hash}</span>
+                <span className='hash text-xs break-all'>{block.hash}</span>
               </p>
               <p>
                 <strong>Previous Hash:</strong>{' '}
-                <span className='prev-hash'>
+                <span className='prev-hash break-all'>
                   {block.previousHash}
                 </span>
               </p>
@@ -33,14 +33,13 @@ function BlockchainDisplay({ blockchain }) {
             </div>
             <div className='transactions'>
               <h3>Transactions ({block.transactions.length})</h3>
-              {block.transactions.map((tx, txIndex) => (
-                <div key={txIndex} className='transaction peer-box'>
-                  <p>From: {tx.sender}</p>
-                  <p>To: {tx.recipient}</p>
-                  <p>Amount: {tx.amount}</p>
-                  <p>Time: {new Date(tx.timestamp).toLocaleTimeString()}</p>
-                </div>
-              ))}
+              <ul class='list-disc list-inside ml-2 text-sm'>
+                {block.transactions.map((tx, txIndex) => (
+                  <li key={txIndex}>
+                    from : {tx.sender} {'->'} {tx.recipient} {`(${tx.amount})`}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         ))}

@@ -24,8 +24,8 @@ export default function DemoDistributed() {
     console.log(balance);
     // Menghasilkan ID pengguna unik
     let generatedUserId = prompt('masukkan nama anda:');
-    
-    while(generatedUserId === null || generatedUserId === '') {
+
+    while (generatedUserId === null || generatedUserId === '') {
       alert('masukkan nama anda!');
       generatedUserId = prompt('masukkan nama anda:');
     }
@@ -54,7 +54,7 @@ export default function DemoDistributed() {
       switch (message.type) {
         case 'BLOCKCHAIN_UPDATE':
           setBlockchain(message.data);
-          console.log(balance)
+          console.log(balance);
           break;
         case 'PENDING_TRANSACTIONS':
           setPendingTransactions(message.data);
@@ -127,7 +127,6 @@ export default function DemoDistributed() {
       }),
     );
     // setBalance((prevBalance) => prevBalance - parseFloat(amount));
-    
   };
 
   // Fungsi untuk meminta penambangan blok
@@ -146,7 +145,7 @@ export default function DemoDistributed() {
   };
 
   return (
-    <div className='App'>
+    <div className='px-5'>
       <header className='App-header pt-25'>
         <h1 className='peer-title'>Demo Transaksi Blockchain</h1>
         <div className='connection-status'>
@@ -187,7 +186,7 @@ export default function DemoDistributed() {
           </button>
         </div>
 
-        <div className='blockchain-section peer-box'>
+        <div className='blockchain-section '>
           <BlockchainDisplay blockchain={blockchain} />
         </div>
       </div>
